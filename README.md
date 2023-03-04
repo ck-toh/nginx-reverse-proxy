@@ -5,7 +5,7 @@ Using NGINX reverse proxy we only required to open a single port (HTTPS) to acce
 We will use Cloudflare free tier services to provide DNS and certificates to get access to web services. 
 ![alt text](images/cloudflare_freetier.png)
 
-Best of all all traffic can be proxied for DDoS protection and encrypted so your IP is never exposed.
+Best of all, all traffic can be proxied for DDoS protection and encrypted so your IP is never exposed.
 ![alt text](images/cloudflare_tls-fullchain.png)
 
 
@@ -37,7 +37,7 @@ Best of all all traffic can be proxied for DDoS protection and encrypted so your
    ```
 5. Request Cloudflare Certificate
    a. Copy the content in tlscert.csr
-   b. Go to Cloudflare portal under SSL/TLS, Origin Server
+   b. Go to Cloudflare portal under SSL/TLS, Origin Server and click Create Certificate
    c. Select "Use my private key and CSR" to paste the content from tlscert.csr
    d. Copy the generate Origin Certificate (Key Format - PEM) and save into a file - cloudflare.pem
 6. Download [Cloudflare Origin CA root certificates](https://developers.cloudflare.com/ssl/static/origin_ca_rsa_root.pem) certificate
