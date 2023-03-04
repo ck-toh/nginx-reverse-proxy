@@ -1,7 +1,15 @@
 # Creating NGINX Reverse Proxy for HomeLab
 
-Using NGINX reverse proxy we only required to open a single port (HTTPS) to access all web services hosted at home. We will use Cloudflare free tier services to provide DNS and certificates to get access to web services. Best of all all traffic can be proxied for DDoS protection so your IP is never exposed.
+Using NGINX reverse proxy we only required to open a single port (HTTPS) to access all web services hosted at home. 
 
+We will use Cloudflare free tier services to provide DNS and certificates to get access to web services. 
+![alt text](images/cloudflare_freetier.png)
+
+Best of all all traffic can be proxied for DDoS protection and encrypted so your IP is never exposed.
+![alt text](images/cloudflare_tls-fullchain.png)
+
+
+## Steps
 1. Register a Domain Name of your choice
 2. Register an account with Cloudflare
 3. Transfer Domain DNS to Cloudflare. You may need to wait a couple of hours for DNS to propagate
