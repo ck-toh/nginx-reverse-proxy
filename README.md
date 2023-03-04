@@ -39,10 +39,11 @@ Best of all, all traffic can be proxied for DDoS protection and encrypted so you
    - Copy the content in tlscert.csr
    - Go to Cloudflare portal under SSL/TLS, Origin Server and click Create Certificate
    - Select "Use my private key and CSR" to paste the content from tlscert.csr
-   - Copy the generate Origin Certificate (Key Format - PEM) and save into a file (cloudflare.pem)
+   - Copy the generate Origin Certificate (Key Format - PEM) and save into a file (cloudflare_orgin.pem)
 6. Download [Cloudflare Origin CA root certificates](https://developers.cloudflare.com/ssl/static/origin_ca_rsa_root.pem) certificate
 7. Merge the Origin Certificate and Cloudflare Origin CA root certificates into full chain certificate
    `cat cloudflare_orgin.pem origin_ca_rsa_root.pem >fullchain.pem`
+   
 8. Deploy NGINX and configure the reverse proxy to use the certificate
    ```
    events {
