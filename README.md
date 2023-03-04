@@ -48,7 +48,6 @@ Using NGINX reverse proxy we only required to open a single port (HTTPS) to acce
      }
 
      server {
-       listen 80;
        listen 443 ssl;
        server_name app1.*;
        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
