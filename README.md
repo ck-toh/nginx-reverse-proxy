@@ -36,7 +36,7 @@ Using NGINX reverse proxy we only required to open a single port (HTTPS) to acce
 7. Merge the Origin Certifate and Cloudflare Origin CA root certificates into full chain certificate
    `cat cloudflare_orgin.pem origin_ca_rsa_root.pem >fullchain.pem`
 8. Deploy NGINX and configure the reverse proxy to use the certificate
-   ```json
+   ```
    events {
      worker_connections 4096;
    }
