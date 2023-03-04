@@ -45,50 +45,49 @@ Using NGINX reverse proxy we only required to open a single port (HTTPS) to acce
      upstream webservers {
        server app1.localdomain:8096;
        server app2.localdomain;
-    }
-
-    server {
-     listen 80;
-     listen 443 ssl;
-     server_name app1.*;
-     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-     ssl_certificate       /etc/nginx/tls/fullchain.pem;
-     ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
-
-     location / {
-        client_max_body_size 4096m;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade         $http_upgrade;
-        proxy_set_header Connection      "Upgrade";
-        proxy_set_header Host            $http_host;
-        proxy_set_header X-Real-IP       $remote_addr;
-        proxy_set_header X-Forward-For   $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forward-Proto $scheme;
-        proxy_redirect off;
-        proxy_pass http://app1.localdomain:8096;
      }
-    }
-    server {
-     listen 443 ssl;
-     server_name retropie.*;
-     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-     ssl_certificate       /etc/nginx/tls/fullchain.pem;
-     ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
 
+     server {
+       listen 80;
+       listen 443 ssl;
+       server_name app1.*;
+       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+       ssl_certificate       /etc/nginx/tls/fullchain.pem;
+       ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
 
-     location / {
-        client_max_body_size 4096m;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade         $http_upgrade;
-        proxy_set_header Connection      "Upgrade";
-        proxy_set_header Host            $http_host;
-        proxy_set_header X-Real-IP       $remote_addr;
-        proxy_set_header X-Forward-For   $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forward-Proto $scheme;
-        proxy_redirect off;
-        proxy_pass https://app2.localdomain;
+       location / {
+          client_max_body_size 4096m;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade         $http_upgrade;
+          proxy_set_header Connection      "Upgrade";
+          proxy_set_header Host            $http_host;
+          proxy_set_header X-Real-IP       $remote_addr;
+          proxy_set_header X-Forward-For   $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forward-Proto $scheme;
+          proxy_redirect off;
+          proxy_pass http://app1.localdomain:8096;
+       }
      }
-    }
+     server {
+       listen 443 ssl;
+       server_name retropie.*;
+       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+       ssl_certificate       /etc/nginx/tls/fullchain.pem;
+       ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
+
+       location / {
+          client_max_body_size 4096m;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade         $http_upgrade;
+          proxy_set_header Connection      "Upgrade";
+          proxy_set_header Host            $http_host;
+          proxy_set_header X-Real-IP       $remote_addr;
+          proxy_set_header X-Forward-For   $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forward-Proto $scheme;
+          proxy_redirect off;
+          proxy_pass https://app2.localdomain;
+       }
+     }
    }
    ```
     
