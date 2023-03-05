@@ -51,17 +51,13 @@ Best of all, all traffic can be proxied for DDoS protection and encrypted so you
    }
 
    http {
-     upstream webservers {
-       server app1.localdomain:8096;
-       server app2.localdomain;
-     }
-
+     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+     ssl_certificate       /etc/nginx/tls/fullchain.pem;
+     ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
+  
      server {
        listen 443 ssl;
        server_name app1.*;
-       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-       ssl_certificate       /etc/nginx/tls/fullchain.pem;
-       ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
 
        location / {
           client_max_body_size 4096m;
@@ -76,12 +72,10 @@ Best of all, all traffic can be proxied for DDoS protection and encrypted so you
           proxy_pass http://app1.localdomain:8096;
        }
      }
+     
      server {
        listen 443 ssl;
-       server_name retropie.*;
-       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-       ssl_certificate       /etc/nginx/tls/fullchain.pem;
-       ssl_certificate_key   /etc/nginx/tls/tlscertpriv.key;
+       server_name app2.*;
 
        location / {
           client_max_body_size 4096m;
